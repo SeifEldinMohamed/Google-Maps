@@ -2,7 +2,6 @@ package com.seif.googlemapsdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -42,13 +41,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         map = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val cairo = LatLng(30.05114940018266, 31.235459175307987)
+        map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo"))
+        map.moveCamera(CameraUpdateFactory.newLatLng(cairo))
 
 
     }
 }
+
+// latitude: the point's latitude. This will be clamped to between -90 degrees and +90 degrees inclusive
+// longitude: the point's longitude. This will be normalized to within -180 degrees and +180     degrees inclusive
 
 // debug
 // SHA1: 8D:FD:C0:B2:C3:41:10:C0:42:1E:60:F6:0B:0E:27:14:3C:F9:BC:59
