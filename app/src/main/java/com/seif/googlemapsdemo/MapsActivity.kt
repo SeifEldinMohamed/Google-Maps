@@ -56,6 +56,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             isCompassEnabled = true //The compass is an icon on the map that indicates the direction of north on the map. If enabled, it is only shown when the camera is tilted or rotated away from its default orientation (tilt of 0 and a bearing of 0). (0enabled by default)
 
         }
+        map.setPadding(0,0,300,0)
+
     }
 }
 
@@ -73,3 +75,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 // by default we can use all gestures in our google maps
 // there are about 20 zoom levels form 1..20 if disabled then the zoom control are not shown on the screen
 // to control zoom levels we can use CameraUpdateFactory.newLatLngZoom(cairo, 15f)
+
+// video: 6 (map padding)
+// with map padding we can specify how many pixels we want to move those ui controllers away from fragment map container
+// the center point will move to thw left side when use map.setPadding(0,0,300,0)
+// we can't move google logo image from app
