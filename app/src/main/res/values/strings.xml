@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Google Maps Demo</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="debug_api_key">AIzaSyDR_1ALkBCpTd4X5c-qUvzwUm27_xID3vs</string>
 </resources>

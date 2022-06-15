@@ -43,17 +43,33 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker in Sydney and move the camera
         val cairo = LatLng(30.05114940018266, 31.235459175307987)
         map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo"))
-        map.moveCamera(CameraUpdateFactory.newLatLng(cairo))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
 
+        map.uiSettings.apply {
+            isZoomGesturesEnabled = true // used for enabling or disabling gesture controls(double tab or by using 2 fingers) for zooming (enabled by default)
+            isZoomControlsEnabled = true// used for enabling or disabling zoom buttons (disabled by default)
+            isScrollGesturesEnabled = true // If enabled, users can use cameraView on our map  (enabled by default)
+            isTiltGesturesEnabled = true // If enabled, users can use a two-finger vertical down swipe to tilt the camera. (enabled by default)`
+            isRotateGesturesEnabled = true //  If enabled, users can use a two-finger rotate gesture to rotate the camera. (enabled by default)`
+            isMyLocationButtonEnabled = true // If the button is enabled, The my-location button causes the camera to move such that the user's location is in the center of the map. it is only shown when the my-location layer is enabled. (enabled by default)
+            isMapToolbarEnabled = true // If enabled, and the Map Toolbar can be shown in the current context, users will see a bar with various context-dependent actions, including 'open this map in the Google Maps app' and 'find directions to the highlighted marker in the Google Maps app' (enabled by default)
+            isCompassEnabled = true //The compass is an icon on the map that indicates the direction of north on the map. If enabled, it is only shown when the camera is tilted or rotated away from its default orientation (tilt of 0 and a bearing of 0). (0enabled by default)
 
+        }
     }
 }
 
 // latitude: the point's latitude. This will be clamped to between -90 degrees and +90 degrees inclusive
-// longitude: the point's longitude. This will be normalized to within -180 degrees and +180     degrees inclusive
+// longitude: the point's longitude. This will be normalized to within -180 degrees and +180 degrees inclusive
 
 // debug
 // SHA1: 8D:FD:C0:B2:C3:41:10:C0:42:1E:60:F6:0B:0E:27:14:3C:F9:BC:59
 
 // release
 //  SHA1: 68:56:09:D6:DB:77:F2:E2:67:28:B4:E2:41:14:DB:53:33:4F:54:33
+
+// video: 5 (controls and gestures)
+// we can modify this controls and gestures using ui setting class which can be obtained from google maps class
+// by default we can use all gestures in our google maps
+// there are about 20 zoom levels form 1..20 if disabled then the zoom control are not shown on the screen
+// to control zoom levels we can use CameraUpdateFactory.newLatLngZoom(cairo, 15f)
