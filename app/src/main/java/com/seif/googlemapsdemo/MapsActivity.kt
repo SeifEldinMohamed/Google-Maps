@@ -126,3 +126,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 // satellite: satellite view
 // terrain ( تضاريس ): used when go hiking to see the terrain of this place
 // none: no maps show
+
+// video: 8 (change map style):
+// go to https://mapstyle.withgoogle.com/ then choose your style and get it's json
+// then put this json in raw and use it in googleMap.setMapStyle( // will return true if this style successfully applied to our map
+//                MapStyleOptions.loadRawResourceStyle(
+//                    this,
+//                    R.raw.style
+//                )
+// to load this style.
