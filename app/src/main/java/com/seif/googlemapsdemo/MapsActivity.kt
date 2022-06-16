@@ -2,6 +2,7 @@ package com.seif.googlemapsdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -9,8 +10,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
+import java.lang.Exception
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -75,7 +78,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         }
         map.setPadding(0,0,300,0)
+        setMapStyle(map)
 
+    }
+
+    private fun setMapStyle(googleMap: GoogleMap){
+        try {
+            val success = googleMap.setMapStyle( // will return true if this style successfully applied to our map
+                MapStyleOptions.loadRawResourceStyle(
+                    this,
+                    R.raw.style
+                )
+            )
+            if(!success){
+                Log.d("main", "failed to load style")
+            }
+        } catch (e:Exception){
+            Log.d("main", e.toString())
+        }
     }
 }
 
