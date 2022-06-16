@@ -2,6 +2,8 @@ package com.seif.googlemapsdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -25,6 +27,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this) // Sets a callback object which will be triggered when the GoogleMap instance is ready to be used.
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.map_types_menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.normal_map -> map.mapType = GoogleMap.MAP_TYPE_NORMAL
+            R.id.hybrid_map -> map.mapType = GoogleMap.MAP_TYPE_HYBRID
+            R.id.satellite_map -> map.mapType = GoogleMap.MAP_TYPE_SATELLITE
+            R.id.terrain_map -> map.mapType = GoogleMap.MAP_TYPE_TERRAIN
+            R.id.none_map -> map.mapType = GoogleMap.MAP_TYPE_NONE
+        }
+        return true
     }
 
     /**
@@ -66,9 +84,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 // debug
 // SHA1: 8D:FD:C0:B2:C3:41:10:C0:42:1E:60:F6:0B:0E:27:14:3C:F9:BC:59
-
 // release
 //  SHA1: 68:56:09:D6:DB:77:F2:E2:67:28:B4:E2:41:14:DB:53:33:4F:54:33
+
 
 // video: 5 (controls and gestures)
 // we can modify this controls and gestures using ui setting class which can be obtained from google maps class
@@ -80,3 +98,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 // with map padding we can specify how many pixels we want to move those ui controllers away from fragment map container
 // the center point will move to thw left side when use map.setPadding(0,0,300,0)
 // we can't move google logo image from app
+
+// video: 7 (change map type)
+// google maps API includes many  maps types as
+// normal: used for navigating with car (normal look)
+// hybrid: used mix between satellite and normal types ( street names + satellite view)
+// satellite: satellite view
+// terrain ( تضاريس ): used when go hiking to see the terrain of this place
+// none: no maps show
