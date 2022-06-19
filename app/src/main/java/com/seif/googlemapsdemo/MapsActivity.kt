@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -13,6 +14,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
 import com.seif.googlemapsdemo.misc.CameraAndViewPort
 import com.seif.googlemapsdemo.misc.TypesAndStyles
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -64,9 +67,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         map.uiSettings.apply {
             isZoomControlsEnabled = true
         }
-        map.setPadding(0, 0, 300, 0)
         typesAndStyles.setMapStyle(map, this)
 
+        lifecycleScope.launch {
+            delay(2000)
+            map.moveCamera(CameraUpdateFactory.zoomBy(3f))
+        }
     }
 }
 

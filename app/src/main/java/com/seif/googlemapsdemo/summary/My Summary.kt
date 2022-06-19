@@ -28,8 +28,9 @@ package com.seif.googlemapsdemo.summary
 
 // video: 6 (map padding)
 // with map padding we can specify how many pixels we want to move those ui controllers away from fragment map container
-// the center point will move to thw left side when use map.setPadding(0,0,300,0)
+// the center point will move to thw left side when use -> map.setPadding(0,0,300,0)
 // we can't move google logo image from app
+
 
 // video: 7 (change map type)
 // google maps API includes many  maps types as
@@ -66,3 +67,11 @@ package com.seif.googlemapsdemo.summary
 //        .bearing(0f) // towards north
 //        .tilt(45f) // viewing angle of 45 degree
 //        .build()
+
+// video: 11 (Change Zoom Level and set MaxMin zoom level)
+// set min zoom level -> map.setMinZoomPreference(15f)
+// set max zoom level -> map.setMaxZoomPreference(15f)
+// CameraUpdateFactory.zoomIn() // zoom in by only one level
+// CameraUpdateFactory.zoomOut() // zoom out by only one level
+// CameraUpdateFactory.zoomTo(12) // zoom to a specific level (to level 12)
+// CameraUpdateFactory.zoomBy(3f) // zoom by a specific amount of zoom levels ( 12+3=15)
