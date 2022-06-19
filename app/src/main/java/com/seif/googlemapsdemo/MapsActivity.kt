@@ -72,7 +72,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         lifecycleScope.launch {
             delay(4000)
-            map.moveCamera(CameraUpdateFactory.scrollBy(0f,-310f))
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f))
             map.addMarker(MarkerOptions().position(newYork).title("Marker in newYork"))
         }
     }

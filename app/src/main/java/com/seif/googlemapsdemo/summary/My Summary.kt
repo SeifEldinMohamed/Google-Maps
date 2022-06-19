@@ -83,3 +83,9 @@ package com.seif.googlemapsdemo.summary
 // -ve in x-axis -> go left (scroll right)
 // +ve in y-axis -> go down (scroll down)
 // -ve in y-axis -> go up (scroll up)
+
+// video: 13 (set boundaries on the map)
+// newLatLngBound() function: which lets us specifies the location boundaries we want to display on the map
+// ( we can only call this function when map layout completed bec apis calculates the display boundaries of the map during layout )
+//  map.moveCamera(CameraUpdateFactory.newLatLngBounds(cameraAndViewPort.gizaBoundaries, 0))
+//  map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f)) (with in the boundaries)
