@@ -60,9 +60,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val cairo = LatLng(30.05114940018266, 31.235459175307987)
+        val newYork = LatLng(40.7164203933524, -74.00440676650565)
         map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo"))
-        //  map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
-        map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
+          map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
+      //  map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
 
         map.uiSettings.apply {
             isZoomControlsEnabled = true
@@ -70,8 +71,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         typesAndStyles.setMapStyle(map, this)
 
         lifecycleScope.launch {
-            delay(2000)
-            map.moveCamera(CameraUpdateFactory.zoomBy(3f))
+            delay(4000)
+            map.moveCamera(CameraUpdateFactory.scrollBy(0f,-310f))
+            map.addMarker(MarkerOptions().position(newYork).title("Marker in newYork"))
         }
     }
 }

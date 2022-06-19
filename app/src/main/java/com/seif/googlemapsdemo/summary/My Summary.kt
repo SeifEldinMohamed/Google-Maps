@@ -75,3 +75,11 @@ package com.seif.googlemapsdemo.summary
 // CameraUpdateFactory.zoomOut() // zoom out by only one level
 // CameraUpdateFactory.zoomTo(12) // zoom to a specific level (to level 12)
 // CameraUpdateFactory.zoomBy(3f) // zoom by a specific amount of zoom levels ( 12+3=15)
+
+// video: 12 (update camera position programmatically)
+// and scrolling the postiion of the camera by shifting the center of the view with the specified number of pixels whether on x or y axis
+// scrollBy() method: let us change camera position with a specific number of pixels on x and y axis
+// +ve in x-axis -> go right (scroll left)
+// -ve in x-axis -> go left (scroll right)
+// +ve in y-axis -> go down (scroll down)
+// -ve in y-axis -> go up (scroll up)
