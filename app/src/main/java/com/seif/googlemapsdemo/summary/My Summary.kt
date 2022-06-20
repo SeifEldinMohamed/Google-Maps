@@ -89,3 +89,10 @@ package com.seif.googlemapsdemo.summary
 // ( we can only call this function when map layout completed bec apis calculates the display boundaries of the map during layout )
 //  map.moveCamera(CameraUpdateFactory.newLatLngBounds(cameraAndViewPort.gizaBoundaries, 0))
 //  map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f)) (with in the boundaries)
+
+// video: 14 (restrict user from scrolling)
+// the user will be able to move through this boundaries only
+// map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
+
+
+

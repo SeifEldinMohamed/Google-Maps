@@ -74,6 +74,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             delay(4000)
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f))
             map.addMarker(MarkerOptions().position(newYork).title("Marker in newYork"))
+            map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
         }
     }
 }
