@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -72,9 +73,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         lifecycleScope.launch {
             delay(4000)
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f))
-            map.addMarker(MarkerOptions().position(newYork).title("Marker in newYork"))
-            map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
+            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo), 2000, object: GoogleMap.CancelableCallback{
+                override fun onFinish() { // will be called when our animation is complete
+                    Toast.makeText(this@MapsActivity, "finished", Toast.LENGTH_SHORT).show()
+                }
+                override fun onCancel() { // will be called when our animation is cancelled
+                    Toast.makeText(this@MapsActivity, "canceled", Toast.LENGTH_SHORT).show()
+
+                }
+            })
+            //  map.animateCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f),2000, null)
+            //map.addMarker(MarkerOptions().position(newYork).title("Marker in newYork"))
+           // map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
         }
     }
 }

@@ -94,5 +94,20 @@ package com.seif.googlemapsdemo.summary
 // the user will be able to move through this boundaries only
 // map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
 
+// video: 15 (animate camera movement)
+//  map.animateCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f),2000, null)
+//  map.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
+//  map.animateCamera(CameraUpdateFactory.scrollBy(1500f,0f), 2000, null)
+// with callback:
+//         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo), 2000, object: GoogleMap.CancelableCallback{
+//                override fun onFinish() { // will be called when our animation is complete
+//                    Toast.makeText(this@MapsActivity, "finished", Toast.LENGTH_SHORT).show()
+//                }
+//                override fun onCancel() { // will be called when our animation is cancelled
+//                    Toast.makeText(this@MapsActivity, "canceled", Toast.LENGTH_SHORT).show()
+//
+//                }
+//            })
 
+//
 
