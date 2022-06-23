@@ -2,6 +2,7 @@ package com.seif.googlemapsdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
 import com.seif.googlemapsdemo.misc.CameraAndViewPort
@@ -18,7 +20,7 @@ import com.seif.googlemapsdemo.misc.TypesAndStyles
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -62,7 +64,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker in Sydney and move the camera
         val cairo = LatLng(30.05114940018266, 31.235459175307987)
         val newYork = LatLng(40.7164203933524, -74.00440676650565)
-        map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo"))
+        val cairoMarker =  map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo"))
+        cairoMarker?.tag = "Restaurant"
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
         //  map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
 
@@ -70,16 +73,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             isZoomControlsEnabled = true
         }
         typesAndStyles.setMapStyle(map, this)
+        map.setOnMarkerClickListener(this)
 
 //        lifecycleScope.launch {
 //            delay(4000)
 //            //  map.animateCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f),2000, null)
 //            //map.addMarker(MarkerOptions().position(newYork).title("Marker in newYork"))
 //            // map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
+//            cairoMarker?.remove()
+//
 //        }
-
-        onMapClicked()
-        onMapLongClicked()
 
     }
     private fun onMapClicked(){
@@ -91,6 +94,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         map.setOnMapLongClickListener {
             map.addMarker(MarkerOptions().position(it).title("new Marker"))
         }
+    }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        marker.let {
+            Log.d("main", it.tag.toString())
+        }
+    //    return true // the title of the marker will not appear in info window + tag
+        return false  // the title of the marker will appear in info window + tag
     }
 
 }

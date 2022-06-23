@@ -113,3 +113,23 @@ package com.seif.googlemapsdemo.summary
 // can be helpful when we use with those markers (ex: add new marker when user long Clicked )
 // map.setOnMapClickListener {} for single click
 //  map.setOnMapLongClickListener {} for long click
+
+// video: 17 (Markers):
+// markers used to identify the location on the map and default marker used standard icon
+// we can customize marker properties like (color, image, opacity, anchor point, rotation, z-index, tag ...)
+// markers are interactive and they receive click events by default (single click open info window)
+
+// video: 18 (store data object in a marker):
+// save data object in marker using setTag function and retrieve same dat object
+// used to distinguish between diff types of markers
+//
+// implement GoogleMap.OnMarkerClickListener
+
+//     override fun onMarkerClick(marker: Marker): Boolean {
+//        marker.let {
+//            Log.d("main", it.tag.toString())
+//        }
+//    //    return true // the title of the marker will not appear in info window + tag
+//        return false  // the title of the marker will appear in info window + tag
+//    }
+
