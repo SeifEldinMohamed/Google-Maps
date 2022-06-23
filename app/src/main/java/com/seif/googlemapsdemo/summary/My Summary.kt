@@ -124,7 +124,8 @@ package com.seif.googlemapsdemo.summary
 // used to distinguish between diff types of markers
 //
 // implement GoogleMap.OnMarkerClickListener
-
+// in onMapReady function ->  map.setOnMarkerClickListener(this)
+//
 //     override fun onMarkerClick(marker: Marker): Boolean {
 //        marker.let {
 //            Log.d("main", it.tag.toString())
@@ -132,4 +133,24 @@ package com.seif.googlemapsdemo.summary
 //    //    return true // the title of the marker will not appear in info window + tag
 //        return false  // the title of the marker will appear in info window + tag
 //    }
+
+// video: 19 (enable marker dragging): "Disabled by default"
+// On Long Press we can move (drag) the marker any where on thw map
+// val cairoMarker =  map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo").draggable(true))
+//
+// implement drag event: by implementing GoogleMap.OnMarkerDragListener
+//  in onMapReady ->  map.setOnMarkerDragListener(this)
+//     override fun onMarkerDragStart(marker: Marker) { // called when the user start drag the marker(long press)
+//        Log.d("drag", "start")
+//    }
+//
+//    override fun onMarkerDrag(marker: Marker) { // called when the user drag the marker all over the map
+//        Log.d("drag", "drag")
+//
+//    }
+//
+//    override fun onMarkerDragEnd(marker: Marker) { // called when the user put the marker in a place on map (release his finger)
+//        Log.d("drag", "end")
+//    }
+
 

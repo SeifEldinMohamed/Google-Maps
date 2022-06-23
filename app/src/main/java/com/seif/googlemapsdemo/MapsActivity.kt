@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -17,10 +16,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
 import com.seif.googlemapsdemo.misc.CameraAndViewPort
 import com.seif.googlemapsdemo.misc.TypesAndStyles
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -63,8 +61,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         // Add a marker in Sydney and move the camera
         val cairo = LatLng(30.05114940018266, 31.235459175307987)
-        val newYork = LatLng(40.7164203933524, -74.00440676650565)
-        val cairoMarker =  map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo"))
+      //  val newYork = LatLng(40.7164203933524, -74.00440676650565)
+        val cairoMarker =
+            map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo").draggable(true))
         cairoMarker?.tag = "Restaurant"
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
         //  map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
@@ -73,7 +72,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             isZoomControlsEnabled = true
         }
         typesAndStyles.setMapStyle(map, this)
-        map.setOnMarkerClickListener(this)
+        map.setOnMarkerDragListener(this)
 
 //        lifecycleScope.launch {
 //            delay(4000)
@@ -85,24 +84,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 //        }
 
     }
-    private fun onMapClicked(){
+
+    override fun onMarkerDragStart(marker: Marker) { // called when the user start drag the marker(long press)
+        Log.d("drag", "start")
+    }
+
+    override fun onMarkerDrag(marker: Marker) { // called when the user drag the marker all over the map
+        Log.d("drag", "drag")
+
+    }
+
+    override fun onMarkerDragEnd(marker: Marker) { // called when the user put the marker in a place on map (release his finger)
+        Log.d("drag", "end")
+    }
+
+    private fun onMapClicked() {
         map.setOnMapClickListener {
             Toast.makeText(this, "location: $it", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun onMapLongClicked(){
+
+    private fun onMapLongClicked() {
         map.setOnMapLongClickListener {
             map.addMarker(MarkerOptions().position(it).title("new Marker"))
         }
     }
 
-    override fun onMarkerClick(marker: Marker): Boolean {
-        marker.let {
-            Log.d("main", it.tag.toString())
-        }
-    //    return true // the title of the marker will not appear in info window + tag
-        return false  // the title of the marker will appear in info window + tag
-    }
 
 }
 
