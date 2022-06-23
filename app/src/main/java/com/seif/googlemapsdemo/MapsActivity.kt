@@ -63,29 +63,35 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val cairo = LatLng(30.05114940018266, 31.235459175307987)
         val newYork = LatLng(40.7164203933524, -74.00440676650565)
         map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo"))
-          map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
-      //  map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
+        //  map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
 
         map.uiSettings.apply {
             isZoomControlsEnabled = true
         }
         typesAndStyles.setMapStyle(map, this)
 
-        lifecycleScope.launch {
-            delay(4000)
-            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo), 2000, object: GoogleMap.CancelableCallback{
-                override fun onFinish() { // will be called when our animation is complete
-                    Toast.makeText(this@MapsActivity, "finished", Toast.LENGTH_SHORT).show()
-                }
-                override fun onCancel() { // will be called when our animation is cancelled
-                    Toast.makeText(this@MapsActivity, "canceled", Toast.LENGTH_SHORT).show()
+//        lifecycleScope.launch {
+//            delay(4000)
+//            //  map.animateCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f),2000, null)
+//            //map.addMarker(MarkerOptions().position(newYork).title("Marker in newYork"))
+//            // map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
+//        }
 
-                }
-            })
-            //  map.animateCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f),2000, null)
-            //map.addMarker(MarkerOptions().position(newYork).title("Marker in newYork"))
-           // map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
+        onMapClicked()
+        onMapLongClicked()
+
+    }
+    private fun onMapClicked(){
+        map.setOnMapClickListener {
+            Toast.makeText(this, "location: $it", Toast.LENGTH_SHORT).show()
         }
     }
+    private fun onMapLongClicked(){
+        map.setOnMapLongClickListener {
+            map.addMarker(MarkerOptions().position(it).title("new Marker"))
+        }
+    }
+
 }
 

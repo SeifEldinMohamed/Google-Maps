@@ -109,5 +109,7 @@ package com.seif.googlemapsdemo.summary
 //                }
 //            })
 
-//
-
+// video: 16 (single and long click listener):
+// can be helpful when we use with those markers (ex: add new marker when user long Clicked )
+// map.setOnMapClickListener {} for single click
+//  map.setOnMapLongClickListener {} for long click
