@@ -1,24 +1,29 @@
 package com.seif.googlemapsdemo
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.BitmapCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
 import com.seif.googlemapsdemo.misc.CameraAndViewPort
 import com.seif.googlemapsdemo.misc.TypesAndStyles
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -61,9 +66,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         // Add a marker in Sydney and move the camera
         val cairo = LatLng(30.05114940018266, 31.235459175307987)
-      //  val newYork = LatLng(40.7164203933524, -74.00440676650565)
+        //  val newYork = LatLng(40.7164203933524, -74.00440676650565)
         val cairoMarker =
-            map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo").draggable(true))
+            map.addMarker(MarkerOptions()
+                .position(cairo)
+                .title("Marker in Cairo")
+                .alpha(0.5f) // visibility of the marker (1 -> visible, 0 -> not visible)
+                .rotation(90f) // rotation of the marker
+                .flat(true)) // Sets whether this marker should be flat against the map true or a billboard facing the camera false. If the marker is flat against the map, it will remain stuck to the map as the camera rotates and tilts but will still remain the same size as the camera zooms, unlike a GroundOverlay. If the marker is a billboard, it will always be drawn facing the camera and will rotate and tilt with the camera. The default value is false.
+
         cairoMarker?.tag = "Restaurant"
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
         //  map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
@@ -72,7 +83,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             isZoomControlsEnabled = true
         }
         typesAndStyles.setMapStyle(map, this)
-        map.setOnMarkerDragListener(this)
 
 //        lifecycleScope.launch {
 //            delay(4000)
@@ -84,32 +94,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 //        }
 
     }
-
-    override fun onMarkerDragStart(marker: Marker) { // called when the user start drag the marker(long press)
-        Log.d("drag", "start")
-    }
-
-    override fun onMarkerDrag(marker: Marker) { // called when the user drag the marker all over the map
-        Log.d("drag", "drag")
-
-    }
-
-    override fun onMarkerDragEnd(marker: Marker) { // called when the user put the marker in a place on map (release his finger)
-        Log.d("drag", "end")
-    }
-
-    private fun onMapClicked() {
-        map.setOnMapClickListener {
-            Toast.makeText(this, "location: $it", Toast.LENGTH_SHORT).show()
+    private fun fromVectorToBitmap(id:Int, color:Int):BitmapDescriptor{
+        val vectorDrawable: Drawable? = ResourcesCompat.getDrawable(resources, id, null)
+        if(vectorDrawable!=null){
+            val bitmap = Bitmap.createBitmap(
+                vectorDrawable.intrinsicWidth, // width and height of our vector drawable to be added to our bitmap object
+                vectorDrawable.intrinsicHeight,
+                Bitmap.Config.ARGB_8888
+            )
+            val canvas = Canvas(bitmap)
+            vectorDrawable.setBounds(0,0,canvas.width, canvas.height)
+            DrawableCompat.setTint(vectorDrawable, color) // to change our vector color
+            vectorDrawable.draw(canvas)
+            return BitmapDescriptorFactory.fromBitmap(bitmap)
+        }
+        else{ // null
+            Log.d("map", "Resource not found!")
+            return BitmapDescriptorFactory.defaultMarker()
         }
     }
-
-    private fun onMapLongClicked() {
-        map.setOnMapLongClickListener {
-            map.addMarker(MarkerOptions().position(it).title("new Marker"))
-        }
-    }
-
-
 }
 
