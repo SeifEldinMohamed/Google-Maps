@@ -186,9 +186,15 @@ package com.seif.googlemapsdemo.summary
 //    }
 //
 // Image(png) -> .icon(BitmapDescriptorFactory.fromResource(R.drawable.customMarker))
-
+//
 // .alpha(0.5f) // visibility of the marker (1 -> visible, 0 -> not visible)
 // .rotation(90f) // rotation of the marker
 // .flat(true) // Sets whether this marker should be flat against the map true or a billboard facing the camera false. If the marker is flat against the map, it will remain stuck to the map as the camera rotates and tilts but will still remain the same size as the camera zooms, unlike a GroundOverlay. If the marker is a billboard, it will always be drawn facing the camera and will rotate and tilt with the camera. The default value is false.
-//
+
+// // video: 21 (marker zIndex):(default zIndex value = 0)
+// zIndex: it specifies the stack order of the marker relative to other markers on the map
+// a marker with higher zIndex will be drawn on the top of other markers with lower zIndex
+// note: markers always drawn above other layers and overlays (ground, polygons and other shapes)
+// so markers are considered to be a separate zIndex group compared to other overlays
+//   .zIndex(1f)) // now it will be on top the first marker when there is an overlay
 

@@ -66,14 +66,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val cairo = LatLng(30.05114940018266, 31.235459175307987)
+        val cairo2 = LatLng(30.061847045116057, 31.214859810404445)
         //  val newYork = LatLng(40.7164203933524, -74.00440676650565)
         val cairoMarker =
             map.addMarker(MarkerOptions()
                 .position(cairo)
-                .title("Marker in Cairo")
-                .alpha(0.5f) // visibility of the marker (1 -> visible, 0 -> not visible)
-                .rotation(90f) // rotation of the marker
-                .flat(true)) // Sets whether this marker should be flat against the map true or a billboard facing the camera false. If the marker is flat against the map, it will remain stuck to the map as the camera rotates and tilts but will still remain the same size as the camera zooms, unlike a GroundOverlay. If the marker is a billboard, it will always be drawn facing the camera and will rotate and tilt with the camera. The default value is false.
+                .title("Marker in Cairo"))
+        val cairoMarker2 =
+            map.addMarker(MarkerOptions()
+                .position(cairo2)
+                .title("Marker in Cairo2")
+                .zIndex(1f)) // now it will be on top the first marker whin there is an overlay
 
         cairoMarker?.tag = "Restaurant"
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
@@ -94,24 +97,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 //        }
 
     }
-    private fun fromVectorToBitmap(id:Int, color:Int):BitmapDescriptor{
-        val vectorDrawable: Drawable? = ResourcesCompat.getDrawable(resources, id, null)
-        if(vectorDrawable!=null){
-            val bitmap = Bitmap.createBitmap(
-                vectorDrawable.intrinsicWidth, // width and height of our vector drawable to be added to our bitmap object
-                vectorDrawable.intrinsicHeight,
-                Bitmap.Config.ARGB_8888
-            )
-            val canvas = Canvas(bitmap)
-            vectorDrawable.setBounds(0,0,canvas.width, canvas.height)
-            DrawableCompat.setTint(vectorDrawable, color) // to change our vector color
-            vectorDrawable.draw(canvas)
-            return BitmapDescriptorFactory.fromBitmap(bitmap)
-        }
-        else{ // null
-            Log.d("map", "Resource not found!")
-            return BitmapDescriptorFactory.defaultMarker()
-        }
-    }
+
 }
 
