@@ -20,10 +20,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
 import com.seif.googlemapsdemo.misc.CameraAndViewPort
+import com.seif.googlemapsdemo.misc.CustomInfoAdapter
 import com.seif.googlemapsdemo.misc.TypesAndStyles
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -60,27 +61,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
 // this function will be called when the activity starts and from getMapAsync when google map is ready
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
         // Add a marker in Sydney and move the camera
         val cairo = LatLng(30.05114940018266, 31.235459175307987)
-        val cairo2 = LatLng(30.061847045116057, 31.214859810404445)
-        //  val newYork = LatLng(40.7164203933524, -74.00440676650565)
         val cairoMarker =
-            map.addMarker(MarkerOptions()
-                .position(cairo)
-                .title("Marker in Cairo")
-                .snippet("hello from cairo!"))
-        val cairoMarker2 =
-            map.addMarker(MarkerOptions()
-                .position(cairo2)
-                .title("Marker in Cairo2")
-                .snippet("hello from cairo22!")
-                .zIndex(1f)) // now it will be on top the first marker whin there is an overlay
-
-        map.setOnMarkerClickListener(this)
+            map.addMarker(
+                MarkerOptions()
+                    .position(cairo)
+                    .title("Marker in Cairo")
+                    .snippet("hello from cairo!")
+            )
 
         cairoMarker?.tag = "Restaurant"
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
@@ -90,6 +84,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
             isZoomControlsEnabled = true
         }
         typesAndStyles.setMapStyle(map, this)
+        map.setInfoWindowAdapter(CustomInfoAdapter(this))
 
 //        lifecycleScope.launch {
 //            delay(4000)
@@ -99,14 +94,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
 //            cairoMarker?.remove()
 //
 //        }
-
     }
-
-    override fun onMarkerClick(marker: Marker): Boolean {
-        map.animateCamera(CameraUpdateFactory.zoomTo(17f),2000,null)
-            marker.showInfoWindow()
-        return true
-    }
-
 }
 
+//  val newYork = LatLng(40.7164203933524, -74.00440676650565)

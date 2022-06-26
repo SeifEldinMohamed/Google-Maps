@@ -204,3 +204,8 @@ package com.seif.googlemapsdemo.summary
 // to add description to info window: .snippet("hello from cairo!")
 // to make info window not appear we have to make onMarkerClick function return true overwritten the default behaviour of the marker
 
+// video: 22 (Custom info window):
+// 1- design custom layout
+// 2- implement CustomInfoWindowAdapter
+// 3- map.setInfoWindowAdapter(CustomInfoAdapter(this))
+
