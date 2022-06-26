@@ -9,7 +9,7 @@ class CameraAndViewPort {
         .target(LatLng(30.05114940018266, 31.235459175307987))
         .zoom(17f)
         .bearing(0f) // towards north
-        .tilt(45f) // viewing angle of 45 degree
+      //  .tilt(45f) // viewing angle of 45 degree
         .build()
 
     val newWork: CameraPosition = CameraPosition.Builder()

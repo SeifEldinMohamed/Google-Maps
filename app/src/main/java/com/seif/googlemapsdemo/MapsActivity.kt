@@ -23,7 +23,7 @@ import com.seif.googlemapsdemo.misc.CameraAndViewPort
 import com.seif.googlemapsdemo.misc.TypesAndStyles
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -71,12 +71,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val cairoMarker =
             map.addMarker(MarkerOptions()
                 .position(cairo)
-                .title("Marker in Cairo"))
+                .title("Marker in Cairo")
+                .snippet("hello from cairo!"))
         val cairoMarker2 =
             map.addMarker(MarkerOptions()
                 .position(cairo2)
                 .title("Marker in Cairo2")
+                .snippet("hello from cairo22!")
                 .zIndex(1f)) // now it will be on top the first marker whin there is an overlay
+
+        map.setOnMarkerClickListener(this)
 
         cairoMarker?.tag = "Restaurant"
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
@@ -96,6 +100,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 //
 //        }
 
+    }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        map.animateCamera(CameraUpdateFactory.zoomTo(17f),2000,null)
+            marker.showInfoWindow()
+        return true
     }
 
 }
