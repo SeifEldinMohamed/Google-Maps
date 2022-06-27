@@ -234,3 +234,22 @@ package com.seif.googlemapsdemo.summary
 // 4- override onPolylineClick() function
 //
 //note: (when coming to clickable events) markers then other shapes based on their zIndex value
+
+// video: 24 (introduction to polygon):
+// polygon is a similar to polyline in a way that both of them consists of coordinates in ordered sequence
+// this polygon is autocompleted our shape so if the first coordinates is different from last coordinate then
+// this api will automatically close polygon shape by appending the first coordinate at the end of the sequence of our coordinates
+// holo polygon: a multiple polygons can be used together to create a complex shapes as (donuts)
+// the trick is to define two polygons in the same area where the larger polygon will act as a fill area while the inner(smaller) polygon will be fully transparent
+//
+//    map.addPolygon(
+//            PolygonOptions().apply {
+//                add(p0, p1, p2, p3)
+//                fillColor(R.color.black) // color of inner area
+//                strokeColor(R.color.black) // color of line
+//                addHole(listOf(p00, p01, p02, p03)) // all points must be inside the larger polygon
+//                zIndex(1f) // increase it's priority
+//            }
+//        )
+
+//

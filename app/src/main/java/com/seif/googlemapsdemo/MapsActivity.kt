@@ -22,20 +22,20 @@ import com.google.android.gms.maps.model.*
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
 import com.seif.googlemapsdemo.misc.CameraAndViewPort
 import com.seif.googlemapsdemo.misc.CustomInfoAdapter
+import com.seif.googlemapsdemo.misc.Shapes
 import com.seif.googlemapsdemo.misc.TypesAndStyles
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolylineClickListener {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private val typesAndStyles by lazy { TypesAndStyles() }
     private val cameraAndViewPort by lazy { CameraAndViewPort() }
+
     private val cairo = LatLng(30.05114940018266, 31.235459175307987)
-    private val giza = LatLng(30.04036951573279, 30.95280653173993)
-    private val newYork = LatLng(40.7164203933524, -74.00440676650565)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,46 +86,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
         //  map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
 
+
+        Shapes().addPolygon(map)
+
         map.uiSettings.apply {
             isZoomControlsEnabled = true
         }
         typesAndStyles.setMapStyle(map, this)
-        map.setOnPolylineClickListener(this)
-
-        //      map.setInfoWindowAdapter(CustomInfoAdapter(this))
 
         lifecycleScope.launch {
 
-            //  map.animateCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f),2000, null)
-            //map.addMarker(MarkerOptions().position(newYork).title("Marker in newYork"))
-            // map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
-            // cairoMarker?.remove()
-            addPolyline()
-
         }
-    }
-
-    private suspend fun addPolyline() {
-        val polyLine: Polyline = map.addPolyline(
-            PolylineOptions().apply {
-                add(cairo, giza, newYork) // takes one or more latLng object
-                width(5f)
-                color(Color.WHITE)
-                geodesic(true) // Specifies whether to draw each segment of this polyline as a geodesic. The default setting is false ( draw an arc instead of straight line)
-                clickable(true)
-            }
-        )
-        delay(6000)
-        val newList = listOf(
-            giza, cairo, newYork
-        )
-        polyLine.points = newList // change the actual polyline
-    }
-
-    override fun onPolylineClick(polyline: Polyline) {
-        Toast.makeText(this, "clicked ${polyline.points.toString()}", Toast.LENGTH_SHORT).show()
     }
 }
 
-//  val newYork = LatLng(40.7164203933524, -74.00440676650565)
 
