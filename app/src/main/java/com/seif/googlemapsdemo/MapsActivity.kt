@@ -86,8 +86,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
         //  map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
 
-
-        Shapes().addPolygon(map)
+        Shapes().addCircle(map)
 
         map.uiSettings.apply {
             isZoomControlsEnabled = true

@@ -2,10 +2,7 @@ package com.seif.googlemapsdemo.misc
 
 import android.graphics.Color
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.PolygonOptions
-import com.google.android.gms.maps.model.Polyline
-import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.gms.maps.model.*
 import com.seif.googlemapsdemo.R
 import kotlinx.coroutines.delay
 
@@ -35,19 +32,30 @@ class Shapes {
             }
         )
         delay(6000)
-        val newList = listOf(
+
+        polyLine.points = listOf(
             giza, cairo, newYork
-        )
-        polyLine.points = newList // change the actual polyline
+        ) // change the actual polyline
     }
 
-    fun addPolygon(map:GoogleMap){
+    fun addPolygon(map: GoogleMap) {
         map.addPolygon(
             PolygonOptions().apply {
                 add(p0, p1, p2, p3)
                 fillColor(R.color.black) // color of inner area
                 strokeColor(R.color.black) // color of line
                 addHole(listOf(p00, p01, p02, p03)) // all points must be inside the larger polygon
+            }
+        )
+    }
+
+    fun addCircle(map: GoogleMap) {
+        val circle = map.addCircle(
+            CircleOptions().apply {
+                center(cairo)
+                radius(50000.0)
+                fillColor(R.color.teal_200)
+                strokeColor(R.color.teal_200)
             }
         )
     }

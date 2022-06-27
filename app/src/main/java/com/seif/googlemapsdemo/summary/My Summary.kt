@@ -242,7 +242,7 @@ package com.seif.googlemapsdemo.summary
 // holo polygon: a multiple polygons can be used together to create a complex shapes as (donuts)
 // the trick is to define two polygons in the same area where the larger polygon will act as a fill area while the inner(smaller) polygon will be fully transparent
 //
-//    map.addPolygon(
+//  val polygon = map.addPolygon(
 //            PolygonOptions().apply {
 //                add(p0, p1, p2, p3)
 //                fillColor(R.color.black) // color of inner area
@@ -252,4 +252,20 @@ package com.seif.googlemapsdemo.summary
 //            }
 //        )
 
+// video: 24 (introduction to circle):
+// to draw a circular shape on the map we need to define 2 main properties:
+// 1- location point: which we will use as a center point of our circle
+// 2- radius: which represented in meter on the map
+// our circle will appear on the map almost as a perfect circle when it's located near the equator
+// and it will appear in a non circular shape when it moves away from equator
 //
+//     val circle = map.addCircle(
+//            CircleOptions().apply {
+//                center(cairo)
+//                radius(50000.0)
+//                fillColor(R.color.teal_200)
+//                strokeColor(R.color.teal_200)
+//            }
+//        )
+// note: all shapes are not clickable by default
+
