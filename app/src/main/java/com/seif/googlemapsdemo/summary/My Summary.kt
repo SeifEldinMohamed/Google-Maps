@@ -209,3 +209,28 @@ package com.seif.googlemapsdemo.summary
 // 2- implement CustomInfoWindowAdapter
 // 3- map.setInfoWindowAdapter(CustomInfoAdapter(this))
 
+// video: 23 (introduction to polyline):
+// polyline: Is a set of latLng location which forms a line segment that connect those same locations in an order sequence
+//
+//   private fun addPolyline(){
+//       val polyLine: Polyline =  map.addPolyline(
+//            PolylineOptions().apply {
+//                add(cairo, giza, newYork) // takes one or more latLng object
+//                width(5f)
+//                color(Color.WHITE)
+//                geodesic(true) // Specifies whether to draw each segment of this polyline as a geodesic. The default setting is false ( draw an arc instead of straight line)
+//                clickable(true) // false by default
+//            }
+//        )
+//        val newList = listOf(
+//            giza, cairo, newYork
+//        )
+//        polyLine.points = newList // change the actual polyline
+//    }
+// click listener on polyline:
+// 1- implement GoogleMap.OnPolylineClickListener
+// 2- map.setOnPolylineClickListener(this)
+// 3- don't forget to make polyline clickable
+// 4- override onPolylineClick() function
+//
+//note: (when coming to clickable events) markers then other shapes based on their zIndex value
