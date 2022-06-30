@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.shapes.Shape
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -86,15 +87,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(cairo, 10f))
         //  map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraAndViewPort.cairo))
 
-        Shapes().addCircle(map)
-
         map.uiSettings.apply {
             isZoomControlsEnabled = true
         }
         typesAndStyles.setMapStyle(map, this)
 
-        lifecycleScope.launch {
+        //Shapes().addPolygon(map)
 
+        lifecycleScope.launch {
+            Shapes().addPolyline(map)
         }
     }
 }

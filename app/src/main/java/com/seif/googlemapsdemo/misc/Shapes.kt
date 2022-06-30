@@ -21,14 +21,21 @@ class Shapes {
     private val p02 = LatLng(30.043405098104202, 31.212911013883616)
     private val p03 = LatLng(30.059006844893435, 31.21533449667013)
 
-    private suspend fun addPolyline(map: GoogleMap) {
+     suspend fun addPolyline(map: GoogleMap) {
+
+      //  val pattern = listOf(Dot(), Gap(30f), Dash(50f)) // start with dot then have a 30 pixels gap then a dash
+
         val polyLine: Polyline = map.addPolyline(
             PolylineOptions().apply {
                 add(cairo, giza, newYork) // takes one or more latLng object
-                width(5f)
+                width(120f)
                 color(Color.WHITE)
                 geodesic(true) // Specifies whether to draw each segment of this polyline as a geodesic. The default setting is false ( draw an arc instead of straight line)
                 clickable(true)
+           //     pattern(pattern)
+                jointType(JointType.ROUND)
+                startCap(RoundCap()) // stroke width in pixels(when we increase this map it will shrink)
+                endCap(ButtCap())
             }
         )
         delay(6000)
@@ -41,21 +48,26 @@ class Shapes {
     fun addPolygon(map: GoogleMap) {
         map.addPolygon(
             PolygonOptions().apply {
+                strokeWidth(120f)
                 add(p0, p1, p2, p3)
                 fillColor(R.color.black) // color of inner area
                 strokeColor(R.color.black) // color of line
-                addHole(listOf(p00, p01, p02, p03)) // all points must be inside the larger polygon
+               // addHole(listOf(p00, p01, p02, p03)) // all points must be inside the larger polygon
+                strokeJointType(JointType.BEVEL)
             }
         )
     }
 
     fun addCircle(map: GoogleMap) {
+        val pattern = listOf(Dot(), Gap(30f), Dash(50f),Gap(30f)) // start with dot then have a 30 pixels gap then a dash
+
         val circle = map.addCircle(
             CircleOptions().apply {
                 center(cairo)
                 radius(50000.0)
                 fillColor(R.color.teal_200)
-                strokeColor(R.color.teal_200)
+                strokeColor(R.color.white)
+                strokePattern(pattern)
             }
         )
     }

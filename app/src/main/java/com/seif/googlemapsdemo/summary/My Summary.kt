@@ -269,3 +269,33 @@ package com.seif.googlemapsdemo.summary
 //        )
 // note: all shapes are not clickable by default
 
+// video: 25 (shape customization):
+// stroke pattern can be used on polyLines, polygons and circles and the default stroke pattern is a solid line for a polyLines and out lines of polygons and circles
+// specifies as dots, gaps and dash we can specifies all of those 3 or 2 of them
+//
+//  val pattern = listOf(Dot(), Gap(30f), Dash(50f)) // start with dot then have a 30 pixels gap then a dash
+// for polyLines:  pattern(pattern)
+// for polygons and circles: strokePattern(pattern)
+//
+// joinTypes: for polyLines and outlines of a polygon we can specify a bevel (straight line) or round joinType
+// and the join type affect the internal bands of the line التحويلة
+// they don't affect dots bec they are always circular
+//
+//  jointType(JointType.ROUND)
+//  jointType(JointType.BEVEL)
+//
+// linesCaps:  we can specify a cap style on each end of the line, we have 2 properties:
+// 1- startCap:
+// 2- endCap:
+// he have many options to specify to my caps:
+
+// buttCap: which is a default line cap
+// squareCap:
+// roundCap:
+//
+//  startCap(RoundCap())
+//  endCap(ButtCap())
+//  endCap(SquareCap())
+//
+// also there is a way to use custom bitmaps to my caps:
+// startCap(CustomCap(BitmapDescriptorFactory.fromResource(R.drawable.ic_android), 20f)) // stroke width in pixels(when we increase this map it will shrink)
