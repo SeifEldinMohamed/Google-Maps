@@ -1,5 +1,8 @@
 package com.seif.googlemapsdemo
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -11,6 +14,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.BitmapCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -87,15 +91,58 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         map.uiSettings.apply {
             isZoomControlsEnabled = true
+            isMyLocationButtonEnabled = true
         }
-        typesAndStyles.setMapStyle(map, this)
 
+        typesAndStyles.setMapStyle(map, this)
+        checkLocationPermission()
         //Shapes().addPolygon(map)
         val groundOverlay = overlays.addGroundOverlayWithTag(map)
         lifecycleScope.launch {
             delay(4000)
             Log.d("maps", groundOverlay?.tag.toString())
         }
+    }
+    private fun checkLocationPermission(){
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED){
+            map.isMyLocationEnabled = true
+            Toast.makeText(this, "location already granted", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            requestLocationPermission()
+        }
+    }
+
+    private fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            1
+        )
+    }
+
+    @SuppressLint("MissingPermission")
+    override fun onRequestPermissionsResult( // will be triggered each time the permission is granted or denied
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode!=1){
+            return
+        }
+        if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(this, "Granted!", Toast.LENGTH_SHORT).show()
+            map.isMyLocationEnabled = true
+        }
+        else{
+            Toast.makeText(this, "we need your permission!", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
 

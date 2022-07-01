@@ -10,7 +10,7 @@ package com.seif.googlemapsdemo.summary
 //  SHA1: 68:56:09:D6:DB:77:F2:E2:67:28:B4:E2:41:14:DB:53:33:4F:54:33
 
 
-// video: 5 (controls and gestures)
+/** video: 5 (controls and gestures) **/
 // we can modify this controls and gestures using ui setting class which can be obtained from google maps class
 // by default we can use all gestures in our google maps
 // there are about 20 zoom levels form 1..20 if disabled then the zoom control are not shown on the screen
@@ -26,13 +26,13 @@ package com.seif.googlemapsdemo.summary
 //            isCompassEnabled = true //The compass is an icon on the map that indicates the direction of north on the map. If enabled, it is only shown when the camera is tilted or rotated away from its default orientation (tilt of 0 and a bearing of 0). (0enabled by default)
 
 
-// video: 6 (map padding)
+/** video: 6 (map padding) **/
 // with map padding we can specify how many pixels we want to move those ui controllers away from fragment map container
 // the center point will move to thw left side when use -> map.setPadding(0,0,300,0)
 // we can't move google logo image from app
 
 
-// video: 7 (change map type)
+/** video: 7 (change map type) **/
 // google maps API includes many  maps types as
 // normal: used for navigating with car (normal look)
 // hybrid: used mix between satellite and normal types ( street names + satellite view)
@@ -40,7 +40,7 @@ package com.seif.googlemapsdemo.summary
 // terrain ( تضاريس ): used when go hiking to see the terrain of this place
 // none: no maps show
 
-// video: 8 (change map style):
+/** video: 8 (change map style): **/
 // go to https://mapstyle.withgoogle.com/ then choose your style and get it's json
 // then put this json in raw and use it in googleMap.setMapStyle( // will return true if this style successfully applied to our map
 //                MapStyleOptions.loadRawResourceStyle(
@@ -49,7 +49,7 @@ package com.seif.googlemapsdemo.summary
 //                )
 // to load this style.
 
-// video: 9 (about camera position):
+/** video: 9 (about camera position): **/
 //google maps sdk allows use to change user's view port of the map by modifying camera position
 // so changes of the camera will not make any changes to markers, overlays and other graphics we can use
 // the map view is modeled as a camera looking down to a flat surface (90 degree angle)
@@ -60,7 +60,7 @@ package com.seif.googlemapsdemo.summary
 // 4) Zoom: Determines Scale of the Map
 // use getMinZoomLevel() function to check for minimum zoom level on a specific device as it may varies over devices
 
-// video: 10 (show building in 3d on map)
+/** video: 10 (show building in 3d on map) **/
 //     val cairo: CameraPosition = CameraPosition.Builder()
 //        .target(LatLng(30.05114940018266, 31.235459175307987))
 //        .zoom(17f)
@@ -68,7 +68,7 @@ package com.seif.googlemapsdemo.summary
 //        .tilt(45f) // viewing angle of 45 degree
 //        .build()
 
-// video: 11 (Change Zoom Level and set MaxMin zoom level)
+/** video: 11 (Change Zoom Level and set MaxMin zoom level) **/
 // set min zoom level -> map.setMinZoomPreference(15f)
 // set max zoom level -> map.setMaxZoomPreference(15f)
 // CameraUpdateFactory.zoomIn() // zoom in by only one level
@@ -76,7 +76,7 @@ package com.seif.googlemapsdemo.summary
 // CameraUpdateFactory.zoomTo(12) // zoom to a specific level (to level 12)
 // CameraUpdateFactory.zoomBy(3f) // zoom by a specific amount of zoom levels ( 12+3=15)
 
-// video: 12 (update camera position programmatically)
+/** video: 12 (update camera position programmatically) **/
 // and scrolling the postiion of the camera by shifting the center of the view with the specified number of pixels whether on x or y axis
 // scrollBy() method: let us change camera position with a specific number of pixels on x and y axis
 // +ve in x-axis -> go right (scroll left)
@@ -84,17 +84,17 @@ package com.seif.googlemapsdemo.summary
 // +ve in y-axis -> go down (scroll down)
 // -ve in y-axis -> go up (scroll up)
 
-// video: 13 (set boundaries on the map)
+/** video: 13 (set boundaries on the map) **/
 // newLatLngBound() function: which lets us specifies the location boundaries we want to display on the map
 // ( we can only call this function when map layout completed bec apis calculates the display boundaries of the map during layout )
 //  map.moveCamera(CameraUpdateFactory.newLatLngBounds(cameraAndViewPort.gizaBoundaries, 0))
 //  map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f)) (with in the boundaries)
 
-// video: 14 (restrict user from scrolling)
+/** video: 14 (restrict user from scrolling) **/
 // the user will be able to move through this boundaries only
 // map.setLatLngBoundsForCameraTarget(cameraAndViewPort.gizaBoundaries)
 
-// video: 15 (animate camera movement)
+/** video: 15 (animate camera movement) **/
 //  map.animateCamera(CameraUpdateFactory.newLatLngZoom(cameraAndViewPort.gizaBoundaries.center, 10f),2000, null)
 //  map.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
 //  map.animateCamera(CameraUpdateFactory.scrollBy(1500f,0f), 2000, null)
@@ -109,7 +109,7 @@ package com.seif.googlemapsdemo.summary
 //                }
 //            })
 
-// video: 16 (single and long click listener):
+/** video: 16 (single and long click listener): **/
 // can be helpful when we use with those markers (ex: add new marker when user long Clicked )
 // map.setOnMapClickListener {} for single click
 //  map.setOnMapLongClickListener {} for long click
@@ -119,7 +119,7 @@ package com.seif.googlemapsdemo.summary
 // we can customize marker properties like (color, image, opacity, anchor point, rotation, z-index, tag ...)
 // markers are interactive and they receive click events by default (single click open info window)
 
-// video: 18 (store data object in a marker):
+/** video: 18 (store data object in a marker): **/
 // save data object in marker using setTag function and retrieve same dat object
 // used to distinguish between diff types of markers
 //
@@ -134,7 +134,7 @@ package com.seif.googlemapsdemo.summary
 //        return false  // the title of the marker will appear in info window + tag
 //    }
 
-// video: 19 (enable marker dragging): "Disabled by default"
+/** video: 19 (enable marker dragging): "Disabled by default" **/
 // On Long Press we can move (drag) the marker any where on thw map
 // val cairoMarker =  map.addMarker(MarkerOptions().position(cairo).title("Marker in Cairo").draggable(true))
 //
@@ -153,7 +153,7 @@ package com.seif.googlemapsdemo.summary
 //        Log.d("drag", "end")
 //    }
 
-// video: 20 (marker customization):
+/** video: 20 (marker customization): **/
 // 1- change color of marker:
 //   map.addMarker(MarkerOptions()
 //                .position(cairo)
@@ -191,25 +191,25 @@ package com.seif.googlemapsdemo.summary
 // .rotation(90f) // rotation of the marker
 // .flat(true) // Sets whether this marker should be flat against the map true or a billboard facing the camera false. If the marker is flat against the map, it will remain stuck to the map as the camera rotates and tilts but will still remain the same size as the camera zooms, unlike a GroundOverlay. If the marker is a billboard, it will always be drawn facing the camera and will rotate and tilt with the camera. The default value is false.
 
-// video: 21 (marker zIndex):(default zIndex value = 0)
+/** video: 21 (marker zIndex):(default zIndex value = 0) **/
 // zIndex: it specifies the stack order of the marker relative to other markers on the map
 // a marker with higher zIndex will be drawn on the top of other markers with lower zIndex
 // note: markers always drawn above other layers and overlays (ground, polygons and other shapes)
 // so markers are considered to be a separate zIndex group compared to other overlays
 //   .zIndex(1f)) // now it will be on top the first marker when there is an overlay
 
-// video: 21 (info window):
+/** video: 21 (info window): **/
 // allows you to display information to the user when they tab on the marker
 // if we have one info window open on a marker and we tried to open another info window of another marker the first one will close automatically
 // to add description to info window: .snippet("hello from cairo!")
 // to make info window not appear we have to make onMarkerClick function return true overwritten the default behaviour of the marker
 
-// video: 22 (Custom info window):
+/** video: 22 (Custom info window): **/
 // 1- design custom layout
 // 2- implement CustomInfoWindowAdapter
 // 3- map.setInfoWindowAdapter(CustomInfoAdapter(this))
 
-// video: 23 (introduction to polyline):
+/** video: 23 (introduction to polyline): **/
 // polyline: Is a set of latLng location which forms a line segment that connect those same locations in an order sequence
 //
 //   private fun addPolyline(){
@@ -235,7 +235,7 @@ package com.seif.googlemapsdemo.summary
 //
 //note: (when coming to clickable events) markers then other shapes based on their zIndex value
 
-// video: 24 (introduction to polygon):
+/** video: 24 (introduction to polygon): **/
 // polygon is a similar to polyline in a way that both of them consists of coordinates in ordered sequence
 // this polygon is autocompleted our shape so if the first coordinates is different from last coordinate then
 // this api will automatically close polygon shape by appending the first coordinate at the end of the sequence of our coordinates
@@ -252,7 +252,7 @@ package com.seif.googlemapsdemo.summary
 //            }
 //        )
 
-// video: 24 (introduction to circle):
+/** video: 24 (introduction to circle): **/
 // to draw a circular shape on the map we need to define 2 main properties:
 // 1- location point: which we will use as a center point of our circle
 // 2- radius: which represented in meter on the map
@@ -269,7 +269,7 @@ package com.seif.googlemapsdemo.summary
 //        )
 // note: all shapes are not clickable by default
 
-// video: 25 (shape customization):
+/** video: 25 (shape customization): **/
 // stroke pattern can be used on polyLines, polygons and circles and the default stroke pattern is a solid line for a polyLines and out lines of polygons and circles
 // specifies as dots, gaps and dash we can specifies all of those 3 or 2 of them
 //
@@ -300,7 +300,7 @@ package com.seif.googlemapsdemo.summary
 // also there is a way to use custom bitmaps to my caps:
 // startCap(CustomCap(BitmapDescriptorFactory.fromResource(R.drawable.ic_android), 20f)) // stroke width in pixels(when we increase this map it will shrink)
 
-// video: 26 (ground overlays):
+/** video: 26 (ground overlays): **/
 // are image overlays that are tied to latitude and longitude coordinates, and it fixed to a map, they are oriented against the earth surface, so rotating, tilting, or zooming the map will change the orientation of the image
 // are useful when we want to fix single image at one area on the map, the image size increased when we zoom, if we rotate it still be fixed
 // specify 2 main properties to the overlay object: 1- position  2- image
@@ -323,3 +323,80 @@ package com.seif.googlemapsdemo.summary
 // groundOverlay?.remove()
 // groundOverlay?.transparency = 0.5f
 // groundOverlay?.tag() // this tag information cam be used for example: add some zIndex Priorities so we can differentiate one overlay from another
+
+/** video: 27 (My location layer): "part of maps sdk" **/
+// my location layer : it's a way to locate yourself on the map just by pressing my location button on the google maps (located on top right corner)
+// if we use my location layer we will not by able to receive the actual data of the current user position, instead our camera will move automatically to our location ( Easiest anf fastest way to locate our location on map )
+// if we will use location of user then we need to request a location permission first (there are 2 main location permission):
+
+// 1- ACCESS_COARSE_LOCATION permission: allows us to use wifi and mobile cellar data or both to determine the device's location
+// the result will return a location in approximately to a city block
+// 2- ACCESS_FINE_LOCATION permission: allows us to use wifi and mobile cellar data to determine the device's location as accurate as possible from the available location providers
+// including the Global Positioning System (GPS)
+
+// so after we choose which one of these permission we will use then we need to request a runtime permission (start from android 6.0 marshmello)
+
+
+// Types of location access
+// Each permission has a combination of the following characteristics:
+// Category: Either foreground location or background location.
+// Accuracy: Either precise location or approximate location.
+
+// Foreground location :
+//If your app contains a feature that shares or receives location information only once, or for a defined amount of time, then that feature requires foreground location access. Some examples include the following:
+//
+// Within a navigation app, a feature allows users to get turn-by-turn directions.
+// Within a messaging app, a feature allows users to share their current location with another user.
+// The system considers your app to be using foreground location if a feature of your app accesses the device's current location in one of the following situations:
+// Additionally, it's recommended that you declare a foreground service type of location:
+/**
+* <!-- Recommended for Android 9 (API level 28) and lower. -->
+* <!-- Required for Android 10 (API level 29) and higher. -->
+* <service
+*     android:name="MyNavigationService"
+*     android:foregroundServiceType="location" ... >
+*     <!-- Any inner elements would go here. -->
+* </service>
+**/
+// You declare a need for foreground location when your app requests either the ACCESS_COARSE_LOCATION permission or the ACCESS_FINE_LOCATION :
+// <manifest ... >
+/**
+*  <!-- Always include this permission -->
+*  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+*
+*  <!-- Include only if your app benefits from precise location access. -->
+*  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+* </manifest>
+**/
+
+// Background location:
+// An app requires background location access if a feature within the app constantly shares location with other users or uses the Geofencing API. Several examples include the following:
+//
+// Within a family location sharing app, a feature allows users to continuously share location with family members.
+// Within an IoT app, a feature allows users to configure their home devices such that they turn off when the user leaves their home and turn back on when the user returns home.
+//
+// On Android 10 (API level 29) and higher, you must declare the ACCESS_BACKGROUND_LOCATION permission in your app's manifest in order to request background location access at runtime.
+// On earlier versions of Android, when your app receives foreground location access, it automatically receives background location access as well.
+/**
+* <manifest ... >
+*  <!-- Required only when requesting background location access on
+*       Android 10 (API level 29) and higher. -->
+*  <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+* </manifest>
+**/
+
+/** Note: The Google Play Store has a location policy concerning device location,
+ * restricting background location access to apps that need it for their core functionality and meet related policy requirements.**/
+
+// Approximate:
+// Provides a device location estimate. If this location estimate is from the LocationManagerService
+// or FusedLocationProvider, this estimate is accurate to within about 3 square kilometers (about 1.2 square miles).
+// Your app can receive locations at this level of accuracy when you declare the ACCESS_COARSE_LOCATION permission
+// but not the ACCESS_FINE_LOCATION permission.
+
+// Precise:
+// Provides a device location estimate that is as accurate as possible.
+// If the location estimate is from LocationManagerService or FusedLocationProvider,
+// this estimate is usually within about 50 meters (160 feet) and is sometimes
+// as accurate as within a few meters (10 feet) or better. Your app can receive locations
+// at this level of accuracy when you declare the ACCESS_FINE_LOCATION permission.
