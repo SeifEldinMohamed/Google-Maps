@@ -21,10 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
-import com.seif.googlemapsdemo.misc.CameraAndViewPort
-import com.seif.googlemapsdemo.misc.CustomInfoAdapter
-import com.seif.googlemapsdemo.misc.Shapes
-import com.seif.googlemapsdemo.misc.TypesAndStyles
+import com.seif.googlemapsdemo.misc.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -35,6 +32,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapsBinding
     private val typesAndStyles by lazy { TypesAndStyles() }
     private val cameraAndViewPort by lazy { CameraAndViewPort() }
+    private val overlays by lazy { Overlays() }
 
     private val cairo = LatLng(30.05114940018266, 31.235459175307987)
 
@@ -93,9 +91,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         typesAndStyles.setMapStyle(map, this)
 
         //Shapes().addPolygon(map)
-
+        val groundOverlay = overlays.addGroundOverlayWithTag(map)
         lifecycleScope.launch {
-            Shapes().addPolyline(map)
+            delay(4000)
+            Log.d("maps", groundOverlay?.tag.toString())
         }
     }
 }

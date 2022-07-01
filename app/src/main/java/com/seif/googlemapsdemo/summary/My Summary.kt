@@ -299,3 +299,27 @@ package com.seif.googlemapsdemo.summary
 //
 // also there is a way to use custom bitmaps to my caps:
 // startCap(CustomCap(BitmapDescriptorFactory.fromResource(R.drawable.ic_android), 20f)) // stroke width in pixels(when we increase this map it will shrink)
+
+// video: 26 (ground overlays):
+// are image overlays that are tied to latitude and longitude coordinates, and it fixed to a map, they are oriented against the earth surface, so rotating, tilting, or zooming the map will change the orientation of the image
+// are useful when we want to fix single image at one area on the map, the image size increased when we zoom, if we rotate it still be fixed
+// specify 2 main properties to the overlay object: 1- position  2- image
+//
+//  private val cairo = LatLng(30.05114940018266, 31.235459175307987)
+//  private val cairoBounds = LatLngBounds(
+//        LatLng(30.02380572436222, 31.191513863513762), // southEast
+//        LatLng(30.065709799502486, 31.25193866723082), // NorthWest
+//    )
+//    fun addGroundOverlay(map: GoogleMap){
+//        val groundOverlay = map.addGroundOverlay(
+//            GroundOverlayOptions().apply {
+//                position(cairo, 10000f, 10000f) // LatLng object , 1 float(represent width), 2 float(represent width and height) in meters
+//                positionFromBounds(cairoBounds) // the ground overlay is placed in the center of the two bounds
+//                image(BitmapDescriptorFactory.fromResource(R.drawable.flower))
+//            }
+//        )
+//    }
+//
+// groundOverlay?.remove()
+// groundOverlay?.transparency = 0.5f
+// groundOverlay?.tag() // this tag information cam be used for example: add some zIndex Priorities so we can differentiate one overlay from another
