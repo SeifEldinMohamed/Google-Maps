@@ -15,6 +15,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.BitmapCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -24,6 +25,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.maps.android.data.geojson.GeoJsonLayer
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
 import com.seif.googlemapsdemo.misc.*
 import kotlinx.coroutines.delay
@@ -95,13 +97,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         typesAndStyles.setMapStyle(map, this)
-        checkLocationPermission()
+     //   checkLocationPermission()
         //Shapes().addPolygon(map)
-        val groundOverlay = overlays.addGroundOverlayWithTag(map)
-        lifecycleScope.launch {
-            delay(4000)
-            Log.d("maps", groundOverlay?.tag.toString())
-        }
+//        val groundOverlay = overlays.addGroundOverlayWithTag(map)
+//        lifecycleScope.launch {
+//            delay(4000)
+//            Log.d("maps", groundOverlay?.tag.toString())
+//        }
+
+//        val layer = GeoJsonLayer(map, R.raw.maps, this)
+//        layer.addLayerToMap()
+//
+//        val polygonStyle = layer.defaultPolygonStyle
+//        polygonStyle.apply {
+//            fillColor = Color.BLUE // ContextCompat.getColor(this, R.color.teal_700)
+//        }
+//
+//        layer.setOnFeatureClickListener {
+//            Log.d("maps", "feature ${it.getProperty("country")}")
+//        }
+//
+//        for (feature in layer.features){
+//            if(feature.hasProperty("country"))
+//                Log.d("maps", "success")
+//        }
     }
     private fun checkLocationPermission(){
         if (ActivityCompat.checkSelfPermission(

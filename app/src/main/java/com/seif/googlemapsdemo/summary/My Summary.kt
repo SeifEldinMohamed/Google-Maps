@@ -4,10 +4,15 @@ package com.seif.googlemapsdemo.summary
 // latitude: the point's latitude. This will be clamped to between -90 degrees and +90 degrees inclusive
 // longitude: the point's longitude. This will be normalized to within -180 degrees and +180 degrees inclusive
 
-// debug
+// debug: generate debug certificate finger print from gradle -> Tasks -> Android -> double click on signing report
 // SHA1: 8D:FD:C0:B2:C3:41:10:C0:42:1E:60:F6:0B:0E:27:14:3C:F9:BC:59
-// release
-//  SHA1: 68:56:09:D6:DB:77:F2:E2:67:28:B4:E2:41:14:DB:53:33:4F:54:33
+
+
+// release: first generate signed bundle or apk then add this command in terminal "keytool -list -v -keystore your_keystore_name -alias your_alias_name"
+// your_keystore_name: your full path where our keystore where is located for example (C:\Users\Stefan\Desktop\googlemaps.jks
+// your_alias_name": alias name for example (key0)
+// then we will be asked to enter keystore password
+// SHA1: 68:56:09:D6:DB:77:F2:E2:67:28:B4:E2:41:14:DB:53:33:4F:54:33
 
 
 /** video: 5 (controls and gestures) **/
@@ -400,3 +405,25 @@ package com.seif.googlemapsdemo.summary
 // this estimate is usually within about 50 meters (160 feet) and is sometimes
 // as accurate as within a few meters (10 feet) or better. Your app can receive locations
 // at this level of accuracy when you declare the ACCESS_FINE_LOCATION permission.
+
+/** video: 58 (geoJson): "Extension of json data format" Utility library **/
+// it represents geographical data
+// GEOJson.io website: on this website we can draw polyLines, polygons, shapes and marker on the map then we can download this geoJson and import in our project
+// we put this geoJson file in raw
+//
+//     val layer = GeoJsonLayer(map, R.raw.maps, this)
+//        layer.addLayerToMap()
+//
+//        val polygonStyle = layer.defaultPolygonStyle
+//        polygonStyle.apply {
+//            fillColor = Color.BLUE // ContextCompat.getColor(this, R.color.teal_700)
+//        }
+//
+//        layer.setOnFeatureClickListener {
+//            Log.d("maps", "feature ${it.getProperty("country")}")
+//        }
+//
+//        for (feature in layer.features){
+//            if(feature.hasProperty("country"))
+//                Log.d("maps", "success")
+//        }

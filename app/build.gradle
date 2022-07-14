@@ -57,4 +57,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
+
+    // Util: used to calculate distance bet start and end point (actually traveled)
+    implementation 'com.google.maps.android:android-maps-utils:2.3.0'
 }
