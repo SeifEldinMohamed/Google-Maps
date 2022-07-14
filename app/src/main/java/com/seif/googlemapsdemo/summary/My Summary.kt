@@ -406,7 +406,7 @@ package com.seif.googlemapsdemo.summary
 // as accurate as within a few meters (10 feet) or better. Your app can receive locations
 // at this level of accuracy when you declare the ACCESS_FINE_LOCATION permission.
 
-/** video: 58 (geoJson): "Extension of json data format" Utility library **/
+/** video: 58 (geoJson): "Extension of json data format" from Maps SDK Utility library **/
 // it represents geographical data
 // GEOJson.io website: on this website we can draw polyLines, polygons, shapes and marker on the map then we can download this geoJson and import in our project
 // we put this geoJson file in raw
@@ -427,3 +427,9 @@ package com.seif.googlemapsdemo.summary
 //            if(feature.hasProperty("country"))
 //                Log.d("maps", "success")
 //        }
+
+/** video: 59 (marker clustering) from Maps SDK Utility library **/
+// helps you manage the multiple marker in different zoom levels
+// to use it we need to add markers objects as cluster marker objects to the cluster manager then the cluster manager passes the algorithm which transforms them into a set of clusters
+// then the cluster render takes care of the rendering by adding and removing clusters and individual markers
+// main point is to reduce the number of markers on the map to be easier to the user
