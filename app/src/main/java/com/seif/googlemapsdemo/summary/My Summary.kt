@@ -454,5 +454,20 @@ package com.seif.googlemapsdemo.summary
 // }
 
 /** video: 60 (heat map) "alternatives to markers" from Maps SDK Utility library **/
-// makes it easy for viewers to understand distribution and relative intensenty of data points on the map rather than placing a marker on each location
+// makes it easy for viewers to understand distribution and relative intensity of data points on the map rather than placing a marker on each location
 // heat maps uses colors to represent the distribution of the data
+// red color -> big intensity
+// yellow color -> medium intensity
+// green color -> small intensity
+// to make heat map looks even better we have to add as many location points as we can
+// tiles overlays: it defines a set of images added on the top of the base map tiles and it useful when we want to create an extense measury to our map to cover large geographical area
+//
+//     private fun addHeatMap(){
+//        val provider = HeatmapTileProvider.Builder()
+//            .data(locationList)
+//            .radius(50)
+//            .build()
+//        val overlay = map.addTileOverlay(TileOverlayOptions().tileProvider(provider))
+//    }
+//
+// customize a radius: it's basically a size of blur represented in pixels (10 to 50) default 20

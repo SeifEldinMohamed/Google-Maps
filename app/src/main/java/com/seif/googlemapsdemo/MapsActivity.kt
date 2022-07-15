@@ -28,6 +28,8 @@ import com.google.android.gms.maps.model.*
 import com.google.maps.android.clustering.ClusterItem
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.data.geojson.GeoJsonLayer
+import com.google.maps.android.heatmaps.Gradient
+import com.google.maps.android.heatmaps.HeatmapTileProvider
 import com.seif.googlemapsdemo.databinding.ActivityMapsBinding
 import com.seif.googlemapsdemo.misc.*
 import kotlinx.coroutines.delay
@@ -100,7 +102,34 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         typesAndStyles.setMapStyle(map, this)
+        addHeatMap()
         // checkLocationPermission()
+    }
+
+    private fun addHeatMap(){
+        val colors = intArrayOf(
+            Color.rgb(0,128, 255), // blue -> low
+            Color.rgb(204,0,204), // pink -> medium
+            Color.rgb(255,255,51) // yellow -> high
+        )
+        val startPoints = floatArrayOf(0.2f, 0.5f, 0.8f) // define our gradient color
+        val gradient = Gradient(colors, startPoints)
+
+        val provider = HeatmapTileProvider.Builder()
+            .radius(50)
+            .data(locationList)
+            .opacity(0.3) // default value = 0.7
+            .gradient(gradient)
+            .build()
+        val overlay = map.addTileOverlay(TileOverlayOptions().tileProvider(provider))
+
+        lifecycleScope.launch {
+            delay(5000)
+            overlay?.clearTileCache() // so we can se the changes
+            provider.setRadius(20)
+            // provider.setData()
+           //  overlay.remove() // to remove our heatmap
+        }
     }
 
     private fun checkLocationPermission() {
