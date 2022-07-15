@@ -1,6 +1,18 @@
 package com.seif.googlemapsdemo.summary
 
 
+/** onMapReady()**/
+/**
+ * Manipulates the map once available.
+ * This callback is triggered when the map is ready to be used.
+ * This is where we can add markers or lines, add listeners or move the camera. In this case,
+ * we just add a marker near Sydney, Australia.
+ * If Google Play services is not installed on the device, the user will be prompted to install
+ * it inside the SupportMapFragment. This method will only be triggered once the user has
+ * installed Google Play services and returned to the app.
+ */
+
+
 // latitude: the point's latitude. This will be clamped to between -90 degrees and +90 degrees inclusive
 // longitude: the point's longitude. This will be normalized to within -180 degrees and +180 degrees inclusive
 
@@ -433,3 +445,14 @@ package com.seif.googlemapsdemo.summary
 // to use it we need to add markers objects as cluster marker objects to the cluster manager then the cluster manager passes the algorithm which transforms them into a set of clusters
 // then the cluster render takes care of the rendering by adding and removing clusters and individual markers
 // main point is to reduce the number of markers on the map to be easier to the user
+//
+// addMarkers(){
+//     locationList.zip(titleList).zip(snippetList).forEach { pair ->
+//            val myItem = MyItem(pair.first.first, "Title: ${pair.first.second}","Snippet: ${pair.second}")
+//            clusterManager.addItem(myItem)
+//        }
+// }
+
+/** video: 60 (heat map) "alternatives to markers" from Maps SDK Utility library **/
+// makes it easy for viewers to understand distribution and relative intensenty of data points on the map rather than placing a marker on each location
+// heat maps uses colors to represent the distribution of the data
